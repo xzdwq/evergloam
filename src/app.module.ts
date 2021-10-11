@@ -4,8 +4,8 @@ import { APP_FILTER } from '@nestjs/core';
 import { HttpErrorFilter } from '@src/core/httperror.filter';
 import { ConfigModule } from '@nestjs/config';
 import configuration from '@cfg/configuration';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from '@src/app.controller';
+import { AppService } from '@src/app.service';
 
 @Module({
   imports: [
