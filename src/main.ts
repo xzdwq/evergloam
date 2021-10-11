@@ -9,17 +9,18 @@ import { AppModule } from './app.module';
 
 async function run() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
-  const config = app.get(ConfigService)
+  const config = app.get(ConfigService),
+        http_log = JSON.parse(config.get('http_log'))
 
-  app.use(morgan('combined',
-    {
-      stream: {
-        write: (message: string) => {
-          logger.info(message)
+    app.use(morgan('combined',
+      {
+        stream: {
+          write: (message: string) => {
+            http_log ? logger.info(message) : null
+          }
         }
       }
-    }
-  ));
+    ))
 
   app.enableCors()
 
